@@ -1,0 +1,13 @@
+<h1><%= single_cat[:name] %></h1>
+
+<form action="/cats/<%= single_cat[:id] %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="text" name="name" value="<%= single_cat[:name] %>">
+  <input type="text" name="color" value="<%= single_cat[:color] %>">
+  <input type="text" name="kittens" value="<%= single_cat[:kittens] %>">
+  <input type="submit" value="Update Kitty">
+</form>
+
+
+
+
