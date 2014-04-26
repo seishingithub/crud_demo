@@ -20,8 +20,24 @@ class Application < Sinatra::Application
   end
 
   post '/cats' do
-    p params
     DB[:cats].insert(:name => params[:name], :color => params[:color], :kittens => params[:kittens])
+    redirect '/'
+  end
+
+  get '/cats/:id' do
+    cat_id = params[:id]
+    erb :show, locals: { single_cat: DB[:cats][id: cat_id]}
+  end
+
+  put '/cats/:id' do
+    cat_id = params[:id]
+    DB[:cats].where(id: cat_id).update(name: params[:name], color: params[:color], kittens: params[:kittens])
+    redirect "/cats/#{cat_id}" # is the same as: redirect "/cats/#{params[:id]}"
+  end
+
+  delete '/cats/:id' do
+    cat_id = params[:id] # or... delete this line and...
+    DB[:cats].where(id: cat_id).delete # or... DB[:cats].where(id: params[:id]).delete
     redirect '/'
   end
 end

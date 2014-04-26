@@ -1,5 +1,5 @@
-<p>
+<ul>
   <% list_of_cats.each do |cat| %>
-    <li><%= cat[:name] %></li>
+    <li><a href="/cats/<%= cat[:id] %>"><%= cat[:name] %></a></li>
   <% end %>
-</p>
+</ul>
